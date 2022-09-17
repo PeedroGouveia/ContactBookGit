@@ -14,6 +14,9 @@ public class Main {
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
+    public static final String LOOKUP_CONTACT  = "GN";
+
+    public static final String REPEATED_NUMBER  = "EP";
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
@@ -24,6 +27,11 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String SAME_PHONE_NUMBER = "There are contacts that share phone numbers.";
+
+    public static final String DIFFERENT_PHONE_NUMBER = "All contacts have different phone numbers.";
+    public static final String PHONE_NOT_EXIST= "Phone number does not exist.";
+
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -53,7 +61,13 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
-                default:
+                case LOOKUP_CONTACT:
+                    getContact(in,cBook);
+                    break;
+                case REPEATED_NUMBER:
+                    checkMultiplePhone(cBook);
+                    break;
+                    default:
                     System.out.println(COMMAND_ERROR);
             }
             System.out.println();
@@ -160,23 +174,24 @@ public class Main {
             else
                 tempCBook.addContact(nextContact.getName(),nextContact.getPhone(),nextContact.getEmail());
         }
-
         if(repeated){
-            //Output repeated
+            System.out.println(SAME_PHONE_NUMBER);
         }else{
-            //Output not repeated
+            System.out.println(DIFFERENT_PHONE_NUMBER);
         }
-
         cBook.initializeIterator();
     }
 
+
     private static void getContact(Scanner in, ContactBook cBook) {
-        String phone;
-        phone = in.nextLine();
-        if (cBook.hasPhone(Integer.parseInt(phone))) {
-            System.out.println(/*TODO*/"a");
+        int number = in.nextInt();
+        in.nextLine();
+        if (cBook.getPhone(number).equals("Not found")) {
+            System.out.println(PHONE_NOT_EXIST);
+        } else {
+            System.out.println(cBook.getPhone(number));
         }
-        else System.out.println(/*TODO*/"b");
     }
+
 
 }
