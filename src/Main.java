@@ -168,7 +168,6 @@ public class Main {
         boolean repeated = false;
         while (cBook.hasNext() && !repeated){
             Contact nextContact = cBook.next();
-            System.out.println(nextContact.getName());
             if (tempCBook.hasPhoneNumber(nextContact.getPhone()))
                 repeated = true;
             else
