@@ -1,4 +1,5 @@
 # ContactBookGit
-This is a starter kit for the first lab of the Software Engineering Course.
-Fork this project to make your own version of it.
+Pedro Gouveia - n60479 <br />
+Luís Abreu - n60153 <br />
+João Ribeiro  - n60127
 
