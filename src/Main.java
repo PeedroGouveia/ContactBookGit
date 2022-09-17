@@ -53,9 +53,6 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
-                case /*TODO*/"GN":
-                    getContact(in,cBook);
-                    break;
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -149,6 +146,28 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void checkMultiplePhone(ContactBook cBook) {
+        ContactBook tempCBook = new ContactBook();
+        cBook.initializeIterator();
+        boolean repeated = false;
+        while (cBook.hasNext() && !repeated){
+            Contact nextContact = cBook.next();
+            System.out.println(nextContact.getName());
+            if (tempCBook.hasPhoneNumber(nextContact.getPhone()))
+                repeated = true;
+            else
+                tempCBook.addContact(nextContact.getName(),nextContact.getPhone(),nextContact.getEmail());
+        }
+
+        if(repeated){
+            //Output repeated
+        }else{
+            //Output not repeated
+        }
+
+        cBook.initializeIterator();
     }
 
     private static void getContact(Scanner in, ContactBook cBook) {
