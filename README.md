@@ -1,5 +1,6 @@
 # ContactBookGit
-Pedro Gouveia - n60479 <br />
-Luís Abreu - n60153 <br />
-João Ribeiro  - n60127
+João Ribeiro  - n60127 <br />
+Luís Abreu - n60157 <br />
+Pedro Gouveia - n60479
+
 
