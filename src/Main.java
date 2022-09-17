@@ -53,6 +53,9 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case /*TODO*/"GN":
+                    getContact(in,cBook);
+                    break;
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -147,4 +150,14 @@ public class Main {
         }
         else System.out.println(BOOK_EMPTY);
     }
+
+    private static void getContact(Scanner in, ContactBook cBook) {
+        String phone;
+        phone = in.nextLine();
+        if (cBook.hasPhone(Integer.parseInt(phone))) {
+            System.out.println(/*TODO*/"a");
+        }
+        else System.out.println(/*TODO*/"b");
+    }
+
 }
