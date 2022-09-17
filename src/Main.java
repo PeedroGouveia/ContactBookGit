@@ -15,6 +15,8 @@ public class Main {
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
 
+    public static final String EXIST_MULTIPLE = "EP";
+
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
@@ -53,6 +55,8 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case EXIST_MULTIPLE:
+                    checkMultiple(cBook);
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -63,6 +67,7 @@ public class Main {
         System.out.println();
         in.close();
     }
+
 
     private static String getCommand(Scanner in) {
         String input;
@@ -146,5 +151,26 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void checkMultiple(ContactBook cBook) {
+        ContactBook tempCBook = new ContactBook();
+        cBook.initializeIterator();
+        boolean repeated = false;
+        while (!cBook.hasNext() && !repeated){
+            Contact nextContact = cBook.next();
+            if (tempCBook.hasContact(nextContact.getName()))
+                repeated = true;
+            else
+                tempCBook.addContact(nextContact.getName(),nextContact.getPhone(),nextContact.getEmail());
+        }
+
+        if(repeated){
+            //Output repeated
+        }else{
+            //Output not repeated
+        }
+
+        cBook.initializeIterator();
     }
 }
